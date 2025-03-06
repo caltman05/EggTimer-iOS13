@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,7 +51,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                                                         <state key="normal" title="Soft"/>
                                                         <connections>
-                                                            <action selector="hardnessSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gGS-O0-fJY"/>
+                                                            <action selector="hardnessSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="buk-Oi-4dG"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -76,7 +77,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                                                         <state key="normal" title="Medium"/>
                                                         <connections>
-                                                            <action selector="hardnessSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zaf-eo-Ktq"/>
+                                                            <action selector="hardnessSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v4c-eF-vgT"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -102,7 +103,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="18"/>
                                                         <state key="normal" title="Hard"/>
                                                         <connections>
-                                                            <action selector="hardnessSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DEx-kK-Md6"/>
+                                                            <action selector="hardnessSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g9i-wN-pVF"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -121,6 +122,21 @@
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nJN-th-c5K" userLabel="Timer View">
                                         <rect key="frame" x="0.0" y="599.33333333333337" width="400" height="260.66666666666663"/>
+                                        <subviews>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kts-Kd-CqS">
+                                                <rect key="frame" x="0.0" y="128" width="400" height="6"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="5" id="sgP-V7-jBi"/>
+                                                </constraints>
+                                                <color key="progressTintColor" systemColor="systemYellowColor"/>
+                                                <color key="trackTintColor" systemColor="systemGrayColor"/>
+                                            </progressView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="kts-Kd-CqS" firstAttribute="centerY" secondItem="nJN-th-c5K" secondAttribute="centerY" id="9Yp-oN-eBH"/>
+                                            <constraint firstAttribute="trailing" secondItem="kts-Kd-CqS" secondAttribute="trailing" id="qds-gd-4Od"/>
+                                            <constraint firstItem="kts-Kd-CqS" firstAttribute="leading" secondItem="nJN-th-c5K" secondAttribute="leading" id="xul-3p-zfW"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -135,7 +151,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="hardnessSelected" destination="kNr-Dp-1Dg" id="pU2-eJ-D6e"/>
+                        <outlet property="progressBar" destination="kts-Kd-CqS" id="c99-co-u4M"/>
+                        <outlet property="titleLabel" destination="XLm-5r-pSP" id="hSl-1A-Pmj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -147,5 +164,11 @@
         <image name="hard_egg" width="287.66665649414062" height="366.33334350585938"/>
         <image name="medium_egg" width="288" height="363.33334350585938"/>
         <image name="soft_egg" width="287" height="365.33334350585938"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

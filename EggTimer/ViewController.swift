@@ -3,34 +3,81 @@
 //  EggTimer
 //
 //  Created by Angela Yu on 08/07/2019.
+//  Modified by Carter Altman
 //  Copyright © 2019 The App Brewery. All rights reserved.
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
-    
-    let eggTimes = ["Soft":300, "Medium":420, "Hard":720]
-    
-    var secondsRemaining = 60
+    var audioPlayer: AVAudioPlayer?
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
+    
+    let eggTimes = ["Soft":3, "Medium":4, "Hard":7]
+    
+    var totalTime = 0
+    var secondsPassed = 0
+    
+    var timer = Timer()
+    
     @IBAction func hardnessSelected(_ sender: UIButton) {
+
+        timer.invalidate()
+        
         let hardness = sender.currentTitle!
         
-        secondsRemaining=eggTimes[hardness]!
+        totalTime=eggTimes[hardness]!
         
-        Timer.scheduledTimer(timeInterval: 1.0,target:self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        progressBar.progress = 0.0
+        secondsPassed=0
+        titleLabel.text = hardness
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0,target:self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
-            
+    
     @objc func updateTimer(){
-        if secondsRemaining > 0 {
-            print("\(secondsRemaining) seconds.")
-            secondsRemaining-=1
+        if secondsPassed < totalTime {
+            secondsPassed+=1
+            let percentageProgress = Float(secondsPassed)/Float(totalTime)
+            progressBar.progress=percentageProgress
+            playTickSound()
+            
+        } else {
+            playAlarmSound()
+            timer.invalidate()
+            titleLabel.text = "DONE"
+            
+        }
+        
+    }
+    
+    func playAlarmSound() {
+        guard let soundURL = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3") else { return }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            audioPlayer?.play()
+        } catch {
+            print("Error playing sound: \(error)")
+        }
+    }
+    func playTickSound() {
+        guard let soundURL = Bundle.main.url(forResource: "tick", withExtension: "mp3") else { return }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            audioPlayer?.play()
+        } catch {
+            print("Error playing sound: \(error)")
         }
     }
     
     
+}
     
-        }
+    
             
 
