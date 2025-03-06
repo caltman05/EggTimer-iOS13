@@ -131,9 +131,17 @@
                                                 <color key="progressTintColor" systemColor="systemYellowColor"/>
                                                 <color key="trackTintColor" systemColor="systemGrayColor"/>
                                             </progressView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ya-4u-EUM" userLabel="Timer Label">
+                                                <rect key="frame" x="177" y="144.33333333333326" width="46" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="6ya-4u-EUM" firstAttribute="top" secondItem="kts-Kd-CqS" secondAttribute="bottom" constant="11.333333333333343" id="47t-dd-zty"/>
                                             <constraint firstItem="kts-Kd-CqS" firstAttribute="centerY" secondItem="nJN-th-c5K" secondAttribute="centerY" id="9Yp-oN-eBH"/>
+                                            <constraint firstItem="6ya-4u-EUM" firstAttribute="centerX" secondItem="kts-Kd-CqS" secondAttribute="centerX" id="Xqa-2G-t19"/>
                                             <constraint firstAttribute="trailing" secondItem="kts-Kd-CqS" secondAttribute="trailing" id="qds-gd-4Od"/>
                                             <constraint firstItem="kts-Kd-CqS" firstAttribute="leading" secondItem="nJN-th-c5K" secondAttribute="leading" id="xul-3p-zfW"/>
                                         </constraints>
@@ -152,6 +160,7 @@
                     </view>
                     <connections>
                         <outlet property="progressBar" destination="kts-Kd-CqS" id="c99-co-u4M"/>
+                        <outlet property="timerLabel" destination="6ya-4u-EUM" id="cRM-kO-prp"/>
                         <outlet property="titleLabel" destination="XLm-5r-pSP" id="hSl-1A-Pmj"/>
                     </connections>
                 </viewController>

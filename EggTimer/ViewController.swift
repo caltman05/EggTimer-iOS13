@@ -6,6 +6,11 @@
 //  Modified by Carter Altman
 //  Copyright © 2019 The App Brewery. All rights reserved.
 //
+//  Added Tick and Alarm Sounds when the timer ends
+//  Added a label so the user can see the time remaining with correct constraints to center under the bar
+
+
+
 
 import UIKit
 import AVFoundation
@@ -15,21 +20,34 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var timerLabel: UILabel!
+    
     
     let eggTimes = ["Soft":3, "Medium":4, "Hard":7]
     
     var totalTime = 0
     var secondsPassed = 0
+    var secondsRemaining = 0
     
     var timer = Timer()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        timerLabel.isHidden=true
+    }
+    
     
     @IBAction func hardnessSelected(_ sender: UIButton) {
 
         timer.invalidate()
         
+        
         let hardness = sender.currentTitle!
         
         totalTime=eggTimes[hardness]!
+        secondsRemaining=eggTimes[hardness]!
+        
+        
         
         progressBar.progress = 0.0
         secondsPassed=0
@@ -41,6 +59,11 @@ class ViewController: UIViewController {
     @objc func updateTimer(){
         if secondsPassed < totalTime {
             secondsPassed+=1
+            
+            timerLabel.text = String(secondsRemaining)
+            secondsRemaining-=1
+            timerLabel.isHidden=false
+            
             let percentageProgress = Float(secondsPassed)/Float(totalTime)
             progressBar.progress=percentageProgress
             playTickSound()
@@ -49,6 +72,7 @@ class ViewController: UIViewController {
             playAlarmSound()
             timer.invalidate()
             titleLabel.text = "DONE"
+            timerLabel.isHidden=true
             
         }
         
